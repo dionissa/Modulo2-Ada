@@ -3,92 +3,33 @@ header {
     align-items: center;
     flex-direction: column;
     padding: 8px;
-    border: 2px solid black;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background-color: #ccc;
+    background-color: #dc3545;
     width: 50vw;
+    color: white;
     border-radius: 10px;
     margin: 50px auto 50px;
 }
 
 body {
-    background-image: url(https://picstatio.com/large/jpo1vl/Burger-fast-food-wallpaper.jpg);
+  background-image: url(background.jpg);
+  background-size: 100vw;
 }
 
-nav {
-  display: flex;
-  background-color: #ea1d2c;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-left img {
-  width: 50px;
-  background-color: white;
-  border-radius: 30px;
-}
-
-.nav-right ul {
-margin: 0;
-}
-
-.nav-right {
-  color: white;
-}
-
-.nav-right a {
-  font-weight: bold;
-  color: white;
-}
-
-
-nav > div {
-  padding: 15px;
-}
-
-nav > div > ul {
-  display: flex;
-}
-
-nav > div > ul > li {
-  text-decoration: none;
-  list-style: none;
-  padding: 10px 15px;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-a:hover {
-  color: black;
-  text-decoration: none;
-}
-
-li:hover a {
-  color: black;
-}
-
-nav > div > ul > li:hover {
-  background-color: white;
-  text-decoration: none;
-  border-radius: 10px;
-  padding: 10px 15px;
-  list-style: none;
-  cursor: pointer;
+body ~ img {
+  filter: blur(2px);
 }
 
 .form-box {
-    background-color: #ccc;
+    background-color: #dc3545;
     background-repeat: no-repeat;
     width: 350px;
     border-radius: .25rem;
     padding: 10px;
     display: flex;
+    color: white;
     flex-direction: column;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border: 2px solid black;
     margin: 0 auto;
 }
 
@@ -115,8 +56,9 @@ form > div > label {
 }
 
 .result-box {
-    background-color: #ccc;
+  background-color: #dc3545;
   display: flex;
+  color: white;
   padding: 15px;
   width: 50vw;
   margin: 15px auto 0;
@@ -124,7 +66,6 @@ form > div > label {
   flex-direction: column;
   text-align: center;    
   opacity: 0;
-  border: 2px solid black;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -133,8 +74,7 @@ footer {
     padding: 20px 0;
     text-align: center;
     font-size: 14px;
-    border-top: 1px solid #D9232A;
-    margin-top: 20px;
+    margin-top: 58px;
     width: 100vw;
   }
   
@@ -153,4 +93,19 @@ footer {
   
   footer strong {
     color: rgb(9, 170, 9);
+  }
+
+  @media (max-width:500px) {
+    .result-box {
+      width: 90vw;
+    }
+    .form-box {
+      width: 90vw;
+    }
+    header {
+      width: 90vw;
+    }
+    body {
+      background-size: auto;
+    }
   }
