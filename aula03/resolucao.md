@@ -1,4 +1,4 @@
-```
+```js
 const arrayParceiros = [
     [19660156627897, "Fernanda Santos"],
     [23998058019370, "Rafael Souza"],
