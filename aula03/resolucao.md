@@ -46,3 +46,23 @@ arrayParceiros.forEach((parceiro) => {
 
 console.log(finalPfPj)
 ```
+```
+Saída no terminal: 
+
+{
+  PF: [
+    { parceirosID: 92291338611, nome: 'Maria Silva' },
+    { parceirosID: 55443795656, nome: 'Maria Souza' },
+    { parceirosID: 77743761456, nome: 'Ana Costa' },
+    { parceirosID: 47202302326, nome: 'Maria Ferreira' },
+    { parceirosID: 58017232567, nome: 'Sofia Costa' },
+    { parceirosID: 63351859919, nome: 'Rafael Souza' },
+    { parceirosID: 84297701780, nome: 'Carlos Oliveira' }
+  ],
+  PJ: [
+    { parceirosID: 19660156627897, nome: 'Fernanda Santos' },
+    { parceirosID: 23998058019370, nome: 'Rafael Souza' },
+    { parceirosID: 16733009491247, nome: 'Lucas Silva' }
+  ]
+}
+```
