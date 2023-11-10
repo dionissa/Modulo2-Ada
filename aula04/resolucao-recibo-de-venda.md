@@ -43,16 +43,16 @@ Dado essa importância os seguintes dados devem ser apresentado em um objeto:
 
 Primeiro, declaramos as variáveis que iremos precisar para realizar o tratamento:
 
-    const reciboDeVenda = 'régua/valor3=cupom0;lápis/valor0.5=cupom0;mochila/valor50=cupom10;estojo/valor8=cupom0;cola/valor4=cupom0;cola/valor4=cupom0;mochila/valor50=cupom10;lápis/valor0.5=cupom0;cola/valor4=cupom0;lápis/valor0.5=cupom0;mochila/valor50=cupom10;tesoura/valor5=cupom0;caneta/valor1=cupom0;cola/valor4=cupom0;estojo/valor8=cupom0;borracha/valor2=cupom0;caderno/valor15=cupom5;lápis/valor0.5=cupom0;lápis/valor0.5=cupom0;tesoura/valor5=cupom0;'
+    ```js const reciboDeVenda = 'régua/valor3=cupom0;lápis/valor0.5=cupom0;mochila/valor50=cupom10;estojo/valor8=cupom0;cola/valor4=cupom0;cola/valor4=cupom0;mochila/valor50=cupom10;lápis/valor0.5=cupom0;cola/valor4=cupom0;lápis/valor0.5=cupom0;mochila/valor50=cupom10;tesoura/valor5=cupom0;caneta/valor1=cupom0;cola/valor4=cupom0;estojo/valor8=cupom0;borracha/valor2=cupom0;caderno/valor15=cupom5;lápis/valor0.5=cupom0;lápis/valor0.5=cupom0;tesoura/valor5=cupom0;'
     const listaDaVenda = []
     const totais = [{}]
-    let stringCortada = reciboDeVenda.split(/[;]/)
+    let stringCortada = reciboDeVenda.split(/[;]/)```
 
 
 A seguir, iremos utilizar o for(), antes de iniciar as operações no loop, vamos dividir a string para criar um objeto para
 cada produto, então, iremos começar a tratar esses objetos um a um e colocando eles dentro do array final.
 
-    for (itens in stringCortada) {
+    ```js for (itens in stringCortada) {
         let produtosSeparados = stringCortada[itens].split(/[/=]/)
         if (produtosSeparados.length > 1) {
             let produto = produtosSeparados[0].charAt(0).toUpperCase() + produtosSeparados[0].slice(1);
@@ -72,7 +72,7 @@ cada produto, então, iremos começar a tratar esses objetos um a um e colocando
         ;
     } 
     }
-    listaDaVenda.sort((a, b) => a.produto.localeCompare(b.produto));
+    listaDaVenda.sort((a, b) => a.produto.localeCompare(b.produto));```
 
 Após fazer essa primeira parte onde irá catalogar os produtos, valores, cupom e quantidade, iremos fazer outro array que conterá
 o preço dos produtos tanto com desconto quanto sem, e também a quantidade total.
@@ -81,7 +81,7 @@ let total = 0;
 let quantidadeTotal = 0;
 let valorTotalComDesconto = 0;
 
-    for (let itens in listaDaVenda) {
+    ```js for (let itens in listaDaVenda) {
         let valorItens = listaDaVenda[itens].valor;
         total += valorItens * listaDaVenda[itens].quantidade;
         totais[0].valorTotal = total;
@@ -97,4 +97,4 @@ let valorTotalComDesconto = 0;
         let quantidadeItens = listaDaVenda[itens].quantidade;
         quantidadeTotal += quantidadeItens;
         totais[0].quantidadeDeProdutos = quantidadeTotal;
-    }
+    }```
