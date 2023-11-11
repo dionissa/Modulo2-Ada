@@ -10,8 +10,8 @@ let stringCortada = reciboDeVenda.split(/[;]/)
 for (itens in stringCortada) {
     // criar uma variável que vai agora dividir a array total em 3 partes, nome, valor e cupom
     let produtosSeparados = stringCortada[itens].split(/[/=]/)
-    // a string original tem um ; no final, que acabava fazendo criar um objeto vazio "", para isso não prejudicar a manipulação dos
-    // dados, a verificação de length > 1 é usada para não pegar esse objeto vazio.
+    /* a string original tem um ; no final, que acabava fazendo criar um objeto vazio "", para isso não prejudicar a manipulação dos
+    dados, a verificação de length > 1 é usada para não pegar esse objeto vazio. */
     if (produtosSeparados.length > 1) {
         // criando a varíavel que vai ser a propriedade produto já formatando com a primeira letra em maiúscula
         let produto = produtosSeparados[0].charAt(0).toUpperCase() + produtosSeparados[0].slice(1);
@@ -20,7 +20,7 @@ for (itens in stringCortada) {
         // criando a varíavel que vai armazenar o valor do cupom, removendo as letras e transformando em número
         let cupom = Number(produtosSeparados[2].replace("cupom",""));
         // aqui foi criado uma variável que vai verificar se o item que está sendo iterado já existe no objeto
-        let itemExistente = listaDaVenda.find(item => item.produto === produto);
+        let itemExistente = listaDaVenda.find(itens => itens.produto === produto);
         // caso ele exista, vai ser aumentada a propriedade quantidade dele em 1
         if (itemExistente) {
             itemExistente.quantidade++;
@@ -37,7 +37,10 @@ for (itens in stringCortada) {
     ;
 } 
 }
-// método utilizado para ordenar os itens do objeto 
+/* método utilizado para ordenar os itens do objeto, onde ele usa o método sort() e localeCompare(), o localeCompare vai comparar o
+ produto a e b, onde vai comparar se o a é alfabeticamente menor que o b, sendo verdade, retorna um valor menor que zero. Caso
+ contrário, retorna um valor maior. Com esse valor retornado, o sort() irá dispor se o item fica antes ou depois do outro de acordo
+ com esse retorno. */ 
 listaDaVenda.sort((a, b) => a.produto.localeCompare(b.produto));
 
 
@@ -47,13 +50,13 @@ let quantidadeTotal = 0;
 let valorTotalComDesconto = 0;
 // loop que vai adicionar os valores de cada um dos produtos na variável que vai ser passada para o objeto final
 for (let itens in listaDaVenda) {
-    // Aqui é criada a variável valorItens e ela recebe o valor de cada um dos objetos multiplicado pela quantidade e vai somando
-    // depois ele joga essa soma toda dentro da propriedade valorTotal da array criada lá no início
+    /* Aqui é criada a variável valorItens e ela recebe o valor de cada um dos objetos multiplicado pela quantidade e vai somando
+    depois ele joga essa soma toda dentro da propriedade valorTotal da array criada lá no início. */
     let valorItens = listaDaVenda[itens].valor;
     total += valorItens * listaDaVenda[itens].quantidade;
     totais[0].valorTotal = total;
-    // similar ao loop anterior, mas aqui precisa verificar se tem cupom de desconto, se não tiver, é a mesma ideia de cima, caso
-    // tenha, ai ele vai diminuir o valor total pelo valor em % do desconto
+    /* similar ao loop anterior, mas aqui precisa verificar se tem cupom de desconto, se não tiver, é a mesma ideia de cima, caso
+    tenha, ai ele vai diminuir o valor total pelo valor em % do desconto */
     let valorDescontado = listaDaVenda[itens].valor;
     if (listaDaVenda[itens].cupom === 0) {
         valorTotalComDesconto += valorDescontado * listaDaVenda[itens].quantidade;
