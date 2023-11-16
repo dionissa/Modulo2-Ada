@@ -25,17 +25,17 @@
                 <h3 class="imcBelowDescription">Lorem, ipsum dolor sit amet consectetur adipisicing elit. </h3>
             </div>
         </div>
-        <div class="form-card">
+        <form class="form-card" onsubmit="return false;">
             <label for="weigth"><p>Qual seu peso? (kg)</p></label>
-            <input type="number" value="0" min="0" name="weigth" id="weigth" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"">
+            <input type="number" value="0" min="0" required name="weigth" id="weigth" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"">
             <label for="height"><p>Qual sua altura? (cm)</p></label>
-            <input type="number" value="0" min="0" name="height" id="height" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
+            <input type="number" value="0" min="0" required name="height" id="height" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
             <div class="buttons">
                 <button class="button" type="submit" onclick="testHidden()">Calcular</button>
-                <button class="button reset" onclick="reset()">Resetar</button>
+                <button id="resetBtn" class="button reset">Resetar</button>
             </div>
+            </form>
             
         </div>
-    </div>
 </body>
 </html>
