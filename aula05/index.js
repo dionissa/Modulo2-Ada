@@ -15,10 +15,10 @@ function testHidden() {
         if (imcMath < 18.5) {
             imcDescription.innerHTML = `<h2 class="imcDescription">Abaixo do peso</h2>`
             imcBelowDesc.innerHTML = `<h3 class="imcBelowDescription">Frágil: Peso insuficiente para a saúde e vitalidade.</h3>`
-        } else if (imcMath <= 18.5 || imcMath < 24.9) {
+        } else if (imcMath >= 18.5 || imcMath < 24.9) {
             imcDescription.innerHTML = `<h2 class="imcDescription">Peso normal</h2>`
             imcBelowDesc.innerHTML = `<h3 class="imcBelowDescription">Equilíbrio ponderal: Peso adequado para a estatura e saúde.</h3>`
-        } else if (imcMath <= 24.9 || imcMath < 29.9) {
+        } else if (imcMath >= 24.9 || imcMath < 29.9) {
             imcDescription.innerHTML = `<h2 class="imcDescription">Sobrepeso</h2>`
             imcBelowDesc.innerHTML = `<h3 class="imcBelowDescription">Excesso de peso: Índice de massa corporal acima do recomendado.</h3>`
         } else {
