@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="index.js" defer></script>
+    <script src="https://kit.fontawesome.com/2c4ead1bc0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>Calculadora de IMC:</h1>
+    </div>
+    <div class="main-container">
+        <div class="image-card">
+            <img class="imageLeft" src="workout.svg" alt="workout">
+            <div class="results result-show">
+                <h3>Resultado IMC:</h3>
+                
+                <div class="circle">
+                <h1 class="imcValue">x</h1>
+                <h2 class="imcDescription">Descrição</h2>
+                </div>               
+                <h3 class="imcBelowDescription">Lorem, ipsum dolor sit amet consectetur adipisicing elit. </h3>
+            </div>
+        </div>
+        <div class="form-card">
+            <label for="weigth"><p>Qual seu peso? (kg)</p></label>
+            <input type="number" value="0" min="0" name="weigth" id="weigth" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"">
+            <label for="height"><p>Qual sua altura? (cm)</p></label>
+            <input type="number" value="0" min="0" name="height" id="height" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
+            <div class="buttons">
+                <button class="button" type="submit" onclick="testHidden()">Calcular</button>
+                <button class="button reset" onclick="reset()">Resetar</button>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
