@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="img/notepad.png" alt="logo"></div>
+        <div class="navbar">
+            <ul>
+                <li>Início</li>
+                <li>Sobre o Projeto</li>
+                <li>Outros Projetos</li>
+                <li>Contato</li>
+            </ul>
+        </div>
+    </header>
+    <div class="title">
+        <h1>To Do List</h1>
+    </div>
+    <div class="sub">
+        <table>
+            <tbody>
+              <tr class="lazer">
+                <td>Lazer</td>
+              </tr>
+              <tr class="familiar">
+                <td>Familiar</td>
+              </tr>
+              <tr class="profissional">
+                <td>Profissional</td>
+              </tr>
+              <tr class="outros">
+                <td>Outros</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+    <div class="form-menu">
+        <label for="task">Nova tarefa:</label>
+        <input type="text" id="input-text" name="task" id="task" placeholder="Insira a tarefa">
+        <select name="tipo" id="type">
+            <option value="lazer">Lazer</option>
+            <option value="profissional">Profissional</option>
+            <option value="familiar">Familiar</option>
+            <option value="outros">Outros</option>
+        </select>
+        <button type="submit" onclick="addNewTask()">Adicionar</button>
+    </div>
+    <div class="tasks-menu" id="task-box">
+    </div>
+</body>
+</html>
