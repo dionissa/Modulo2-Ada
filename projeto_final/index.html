@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Tarefas</title>
+    <title>• Lista de Tarefas</title>
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js" defer></script>
+    <link rel="shortcut icon" href="img/notepad.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -20,39 +21,38 @@
         </div>
     </header>
     <div class="title">
-        <h1>To Do List</h1>
+        <h1>• Lista de Tarefas</h1>
     </div>
-    <div class="sub">
-        <table>
-            <tbody>
-              <tr class="lazer">
-                <td>Lazer</td>
-              </tr>
-              <tr class="familiar">
-                <td>Familiar</td>
-              </tr>
-              <tr class="profissional">
-                <td>Profissional</td>
-              </tr>
-              <tr class="outros">
-                <td>Outros</td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
-
     <div class="form-menu">
-        <label for="task">Nova tarefa:</label>
-        <input type="text" id="input-text" name="task" id="task" placeholder="Insira a tarefa">
-        <select name="tipo" id="type">
-            <option value="lazer">Lazer</option>
-            <option value="profissional">Profissional</option>
-            <option value="familiar">Familiar</option>
-            <option value="outros">Outros</option>
-        </select>
-        <button type="submit" onclick="addNewTask()">Adicionar</button>
+        <label for="title">Título:</label>
+        <input type="text" id="input-title" name="title" id="title" placeholder="Insira o título">
+        <label for="description">Descrição:</label>
+        <input type="text" id="input-description" name="description" id="description" placeholder="Insira a descrição">     
+        <label for="category">Categoria:</label>
+        <input type="text" name="category" id="input-category" placeholder="Insira uma categoria">
+        <label for="date">Validade:</label>
+        <input type="date" name="date" id="input-date">
+        <button type="button" class="button" onclick="addTask()">
+            <span class="button-text">Adicionar</span>
+          </button>
     </div>
+        <div class="wrap">
+            <div class="search">
+                <label for="title">Procure por título:</label>
+               <input type="text" placeholder="Título" id="searchValue">
+               <button type="submit" class="button" onclick="searchTask()">Procurar
+              </button>
+            </div>
+         </div>
     <div class="tasks-menu" id="task-box">
     </div>
+    <button class="button restore" onclick="recallAllDeleted()">🗑️ Restaurar todas as tarefas</button>
+    <div class="buttonsCommands">
+    <button class="button" id="showAllButton" onclick="showAllTasks()">Mostrar tudo</button>
+    <button class="button" id="showExpiredButton" onclick="showExpiredTasks()">Mostrar expiradas</button>
+    <button class="button" id="showNonExpiredButton" onclick="showNonExpiredTasks()">Mostrar pendentes</button>
+    <button class="button" onclick="showTaskTotals()">Total de tarefas</button>
+
+</div>
 </body>
 </html>
