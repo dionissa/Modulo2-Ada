@@ -1,4 +1,7 @@
+// Criação da Array que vai armazenar todas as tasks como objetos únicos
 const arrayOfTasks = []
+
+// Criação de algumas variáveis para conseguir a data do dia e formatar em um jeito que o input date aceite
 const date = new Date();
 const day = ('0' + date.getDate()).slice(-2);
 const month = ('0' + (date.getMonth() + 1)).slice(-2);
@@ -7,11 +10,14 @@ const formattedDate = year + '-' + month + '-' + day;
 let dayOfToday = document.querySelector("#input-date")
 dayOfToday.value = formattedDate
 
+// Função principal da aplicação, que vai criar as novas tarefas
 function addTask() {
+        // Aqui ele vai receber os dados inseridos nos inputs pelo usuário
         let title = document.querySelector("#input-title").value
         let description = document.querySelector("#input-description").value
         let category = document.querySelector("#input-category").value
         let expirationDate = document.querySelector("#input-date").value
+        // Validações para que não fique título em branco, muito pequeno, entre outros.
         try {
             if (title.trim() === "") {
                 throw new Error("Por favor, insira um título");
@@ -35,16 +41,21 @@ function addTask() {
             if (arrayOfTasks.some(task => task.title === title)) {
                 throw new Error("Título já existe, favor inserir outro");
             }
-
+        
+        // Caso esteja tudo correto, vai criar uma ID única para essa tarefa, utilizando o horário com milisegundos para não ter como
+        // surgirem duplicatas
         let id = Date.now()
+        // Após isso, uma nova função será chamada utilizando de paramêtros as propriedades que são inseridas no objeto.
         pushNewTask(id, title, description, category, expirationDate)
     } catch (error) {
         alert(error.message);
     }
 }
 
-
+// Essa função é responsável por inserir as informações que pegamos no addTask na array.
 function pushNewTask(id, title, description, category, expiration) {
+    // Inserção direta das informações que recebemos do usuário no input em cada propriedade.
+    // Note que criamos 2 propriedades a mais aqui, deleted e expired, serão utilizadas futuramente para ações que teremos a mais.
     arrayOfTasks.push({
         id: id,
         title: title,
@@ -54,11 +65,16 @@ function pushNewTask(id, title, description, category, expiration) {
         deleted: false,
         expired: false
     })
+    // Depois de enviar essas informações para o array, iremos chamar a função que passa essa tarefa da array para uma parte
+    // visual no DOM.
     passTaskToDom(id);
+    // Estamos utilizando o localStorage para salvar nossas tarefas, então após adicionar uma nova, será salva também no local.
     saveTasksToLocalStorage();
 }
 
+// Como funciona nossa função de passar a tarefa criada para o DOM?
 function passTaskToDom(id) {
+    // Criamos aqui a div que vai englobar essa nova tarefa
     let taskDiv = document.createElement("div")
     taskDiv.className = "task showing"
     taskDiv.id = `id${id}`
@@ -66,6 +82,9 @@ function passTaskToDom(id) {
     let titleDiv = document.createElement("div")
     titleDiv.className = "task-title"
     titleDiv.id = `titleId${id}`
+    // Depois de criar essa div, iremos fazer uma varredura pelo array com as tarefas, e sempre que ele encontrar um array, irá
+    // fazer uma sequência de lógica que cria novos elementos, divs, paragráfos, botões, etc, para que a nossa tarefa apareça como
+    // se fosse um post it na página.
     for (itens of arrayOfTasks) {
         if (itens.id === id){
             titleDiv.innerHTML = `<h2>${itens.title}</h2>`
@@ -97,16 +116,20 @@ function passTaskToDom(id) {
     }
 }
 
+// Essa função é para o soft delete, onde irá mudar aquela propriedade deleted que inicialmente era false para true
 function deleteTask(id) {
     for (itens of arrayOfTasks) {
         if (itens.id === id){
             itens.deleted = true
         }
     }
+    // Após fazer essa troca, chamamos essa nova função que vai checar as tarefas deletadas
     checkDeletedOnTask(id)
 }
 
 function checkDeletedOnTask(id) {
+    // Aqui ela vai passar por todas as tarefas da array, como na maioria das funções e verificar se o deleted é true
+    // Caso ele seja rtue, iremos mudar o display dessa tarefa pra none, fazendo ela sumir do nosso DOM.
     for (let i = 0; i < arrayOfTasks.length; i++) {
         if (arrayOfTasks[i].id === id && arrayOfTasks[i].deleted === true) {
             let findIdDiv = `#id${id}`;
@@ -119,8 +142,12 @@ function checkDeletedOnTask(id) {
     }
 }
 
+
+// Temos uma função que vai chamar de volta todas as tarefas excluidas, por isso chamamos de soft delete, elas não sairam da nossa
+// array principal
 function recallAllDeleted() {
     for (let i = 0; i < arrayOfTasks.length; i++) {
+        // Se a tarefa estiver com o deleted true, iremos voltar o display dela para flex, fazendo assim ela aparecer novamente no DOM
         if (arrayOfTasks[i].deleted === true) {
             arrayOfTasks[i].deleted = false;
             let findIdDiv = `#id${arrayOfTasks[i].id}`;
@@ -132,14 +159,20 @@ function recallAllDeleted() {
     }
 }
 
-
+// Aqui é a parte que vamos editar as tarefas já mostradas na DOM
 function editTask(id) {
+    // Novamente um loop que vai iterar entre todas as tarefas até encontrar a que estamos querendo manipular
     for (itens of arrayOfTasks) {
         if (itens.id === id){
+            // Após encontrar, criamos apenas essa variável pra poder utilizar seu ID como seletor no querySelector
             let idIdentifierDiv = `#id${id}`
             let taskDiv = document.querySelector(idIdentifierDiv);
 
+            // Caso essa div não contenha a classe editOn, iremos seguir com a lógica para abrir o menu de edições,
+            // essa verificação eu coloquei porque se não o usuário poderia clicar em editar várias vezes e sempre ia abrindo
+            // novos menus de edições, que não é o que eu queria.
             if (!taskDiv.classList.contains("editOn")) {
+                // Aqui, como ele não possui ainda o editOn, vai ser adicionado essa classe e criaremos o menu de edição na DOM
                 taskDiv.className = "task showing editOn"
 
                 let newDivEdit = document.createElement("div")
@@ -189,6 +222,7 @@ function editTask(id) {
                 newExpirationInput.className = "input-date"
                 taskDiv.appendChild(newDivEdit).appendChild(newExpirationInput)
 
+                // Essa parte específica é para que o botão criado no menu de edição tenha a função para confirmar a edição
                 let newButtonEdit = document.createElement("button");
                 newButtonEdit.addEventListener("click", function() {
                     try {
@@ -198,6 +232,9 @@ function editTask(id) {
                         alert(error.message);
                     }
                 });
+
+                // Aqui foi preciso adicionar essas alterações porque se não o próximo botão edit que surgisse no menu de edições
+                // era um botão sem função, assim, garantimos que depois de editar ainda podemos editar novamente se quiser
                 newButtonEdit.type = "button"
                 newButtonEdit.className = "button edit"
                 newButtonEdit.id = `edit${itens.id}`
@@ -208,9 +245,11 @@ function editTask(id) {
     }
 }
 
+// Chegamos aqui na função que confirma a edição da nossa tarefa
 function confirmEditTask(id) {
-    for (itens of arrayOfTasks) {
-        if (itens.id === id) {
+    // Loop para passar pelas tarefas da array e encontrar qual estamos querendo alterar
+    for (let i = 0; i < arrayOfTasks.length; i++) {
+        if (arrayOfTasks[i].id === id) {
             let idForNewTitleEdited = `#input${id}`
             let titleEdited = document.querySelector(idForNewTitleEdited).value
 
@@ -223,6 +262,7 @@ function confirmEditTask(id) {
             let idForNewExpirationEdited = `#date${id}`
             let expirationEdited = document.querySelector(idForNewExpirationEdited).value
 
+            // Aqui temos as mesmas validações de na hora de criação da tarefa
             try {
                 if (titleEdited.trim() === "") {
                     throw new Error("Título editado não pode ser vazio.");
@@ -246,36 +286,50 @@ function confirmEditTask(id) {
                     throw new Error("Título editado deve ser único.");
                 }
 
-            let idForOldTitleEdited = `#titleId${id}`
-            let alteredTitle = document.querySelector(idForOldTitleEdited)
-            alteredTitle.innerHTML = `<h2>${titleEdited}</h2>`
+                // Se todos os requisitos forem cumpridos, iremos passar as novas informações para a tarefa na array e atualizar
+                // essas informações na DOM
+                arrayOfTasks[i].title = titleEdited;
+                arrayOfTasks[i].description = descriptionEdited;
+                arrayOfTasks[i].category = categoryEdited;
+                arrayOfTasks[i].expirationDate = expirationEdited;
 
-            let idForOldDescriptionEdited = `#descriptionId${id}`
-            let alteredDescription = document.querySelector(idForOldDescriptionEdited)
-            alteredDescription.innerHTML = `<p>${descriptionEdited}</p>`
+                let idForOldTitleEdited = `#titleId${id}`
+                let alteredTitle = document.querySelector(idForOldTitleEdited)
+                alteredTitle.innerHTML = `<h2>${titleEdited}</h2>`
 
-            let idForOldCategoryEdited = `#categoryId${id}`
+                let idForOldDescriptionEdited = `#descriptionId${id}`
+                let alteredDescription = document.querySelector(idForOldDescriptionEdited)
+                alteredDescription.innerHTML = `<p>${descriptionEdited}</p>`
 
-            let alteredCategory = document.querySelector(idForOldCategoryEdited)
-            alteredCategory.innerHTML = `<strong>Categoria:</strong> ${categoryEdited}`
+                let idForOldCategoryEdited = `#categoryId${id}`
+                let alteredCategory = document.querySelector(idForOldCategoryEdited)
+                alteredCategory.innerHTML = `<strong>Categoria:</strong> ${categoryEdited}`
 
-            let idForOldExpirationEdited = `#expirationId${id}`
-            let alteredExpiration = document.querySelector(idForOldExpirationEdited)
-            alteredExpiration.innerHTML = `<strong>Prazo da tarefa:</strong> até ${expirationEdited.split('-').reverse().join('-')}`
-            let classForEditDiv = `.edit${id}`
-            let editDivToRemove = document.querySelector(classForEditDiv)
-            if (editDivToRemove){
-                editDivToRemove.parentNode.removeChild(editDivToRemove)
+                let idForOldExpirationEdited = `#expirationId${id}`
+                let alteredExpiration = document.querySelector(idForOldExpirationEdited)
+                alteredExpiration.innerHTML = `<strong>Prazo da tarefa:</strong> até ${expirationEdited.split('-').reverse().join('-')}`
+
+                let classForEditDiv = `.edit${id}`
+                let editDivToRemove = document.querySelector(classForEditDiv)
+                if (editDivToRemove) {
+                    editDivToRemove.parentNode.removeChild(editDivToRemove);
+                }
+                let idIdentifierDiv = `#id${id}`;
+                let taskDiv = document.querySelector(idIdentifierDiv);
+                if (taskDiv.classList.contains("editOn")) {
+                    taskDiv.classList.remove("editOn");
+                }
+                // Novamente, precisamos salvar agora essas inforamações no Local Storage para não perder a edição dessa tarefa
+                saveTasksToLocalStorage();
+            } catch (error) {
+                alert(error.message);
+                return;
             }
-            saveTasksToLocalStorage();
-        } catch (error) {
-            alert(error.message);
-            return;
         }
     }
 }
-}
 
+// Função simples que vai procurar as tarefas que o Título que o usuário escrever na caixa bata com as tarefas com esse título
 function searchTask() {
     let searchValue = document.querySelector("#searchValue").value.toLowerCase();
     for (const task of arrayOfTasks) {
@@ -296,6 +350,8 @@ function searchTask() {
     }
 }
 
+// Como as tarefas tem prazo de validade, sempre estaremos checando com uma função pra caso esse prazo esteja passado,
+// Se a tarefa passou do prazo, iremos emitir um alert e trocaremos a cor dela para vermelho.
 function updateExpiredStatus() {
     const currentDate = new Date();
 
@@ -316,13 +372,17 @@ function updateExpiredStatus() {
     }
 }
 
+// A cada 1 minuto essa verificação é feita
 setInterval(updateExpiredStatus, 60000);
 
+
+// Função para que o usuário mostre Todas as tarefas que possui, expirada, deletada, qualquer uma, mostra todas da array.
 function showAllTasks() {
     const allTasks = document.querySelectorAll('.task');
     allTasks.forEach(task => task.style.display = 'flex');
 }
 
+// Função que mostra apenas as tarefas expiradas e esconde todas as outras
 function showExpiredTasks() {
     const allTasks = document.querySelectorAll('.task');
     allTasks.forEach(task => {
@@ -336,6 +396,7 @@ function showExpiredTasks() {
     });
 }
 
+// Função que mostra apenas as tarefas não expiradas e esconde todas as outras
 function showNonExpiredTasks() {
     const allTasks = document.querySelectorAll('.task');
     allTasks.forEach(task => {
@@ -349,6 +410,7 @@ function showNonExpiredTasks() {
     });
 }
 
+// Função que mostra uma totalização de todas as tarefas que possui no array, dividindo elas por tipos.
 function showTaskTotals() {
     const totalTasks = arrayOfTasks.length;
     const tasksWithoutCategory = arrayOfTasks.filter(task => !task.category).length;
@@ -376,10 +438,12 @@ function showTaskTotals() {
     alert(resultMessage);
 }
 
+// Função que salva nossas tarefas da arrayOfTask em um json em modo string no localStorage
 function saveTasksToLocalStorage() {
     localStorage.setItem('tasks', JSON.stringify(arrayOfTasks));
 }
 
+// Função necessária para que ao abrir a página, irá carregas as tarefas existentes no LocalStorage
 function loadTasksFromLocalStorage() {
     const storedTasks = localStorage.getItem('tasks');
     if (storedTasks) {
@@ -392,4 +456,12 @@ function loadTasksFromLocalStorage() {
     }
 }
 
+// Chamada a função para carregar as tarefas já existentes no localStorage
 loadTasksFromLocalStorage();
+
+
+// Futuras implementações:
+// Uma opção de Hard Delete, onde vai excluir a tarefa da arrayOfTasks e sumir com ela da aplicação
+// Salvar os dados em um banco de dados externo invés de no Local Storage
+// Deixar responsivo para aparelhos mobile
+// Atualizar os links da navbar, que são apenas ilustrativos
