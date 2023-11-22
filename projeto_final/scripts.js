@@ -456,12 +456,25 @@ function loadTasksFromLocalStorage() {
     }
 }
 
+// function clickToCheck(id) {
+//     let idForSelector = `#id${id}`;
+//     let taskDiv = document.querySelector(idForSelector);
+
+//     if (!taskDiv.classList.contains("checked")) {
+//         taskDiv.classList.add("checked");
+//     } else {
+//         taskDiv.classList.remove("checked");
+//     }
+//     return;
+// }
+
+
 // Chamada a função para carregar as tarefas já existentes no localStorage
 loadTasksFromLocalStorage();
+updateExpiredStatus();
 
 
 // Futuras implementações:
 // Uma opção de Hard Delete, onde vai excluir a tarefa da arrayOfTasks e sumir com ela da aplicação
 // Salvar os dados em um banco de dados externo invés de no Local Storage
 // Deixar responsivo para aparelhos mobile
-// Atualizar os links da navbar, que são apenas ilustrativos

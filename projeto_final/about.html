@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>• Lista de Tarefas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+    <link rel="shortcut icon" href="img/notepad.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="img/notepad.png" alt="logo"></div>
+        <div class="navbar">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="about.html">Sobre o Projeto</a></li>
+                <li><a href="https://github.com/dionissa?tab=repositories" target="_blank">Outros Projetos</a></li>
+                <li><a href="https://www.linkedin.com/in/dionissa/" target="_blank">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="title">
+        <h1>Lista de Tarefas</h1>
+    </div>
+    <div class="about-us title">
+        <h1>Sobre o projeto:</h1>
+    </div>
+    <div class="about-us-info">
+        <section>
+            <section>
+                <h2>O que era pra ser feito?</h2>
+                <p>Desenvolver, utilizando os conceitos abordados ao longo do módulo, uma aplicação de lista de tarefas (ToDo List).</p>
+            </section>
+        
+            <section>
+                <h2>Requisitos</h2>
+                <ul>
+                    <li>Adicionar uma tarefa (id, titulo, descrição e categoria)</li>
+                    <li>Editar uma tarefa salva (titulo, descrição e categoria)</li>
+                    <li>Listar tarefas de uma categoria em especifico</li>
+                    <li>Categoria é um campo opcional</li>
+                    <li><strong>Extra 1:</strong> Adicionar a lógica de categoria nas tarefas</li>
+                    <li><strong>Extra 2:</strong> Adicionar a lógica de vencimento nas tarefas</li>
+                    <li><strong>Extra 3:</strong> Adicionar totalizadores</li>
+                    <li><strong>Extra 4:</strong> Adicionar lógica `soft delete`</li>
+                </ul>
+            </section>
+        
+            <section>
+                <h2>Validações</h2>
+                <ul>
+                    <li>A tarefa não pode ter titulo e descrição vazios.</li>
+                    <li>O título não deve conter apenas números.</li>
+                    <li>O título deve ter no mínimo 4 caracteres.</li>
+                    <li>A descrição deve ter no mínimo 20 caracteres.</li>
+                    <li>Não deve haver tarefas com o título duplicado.</li>
+                    <li>Categoria deve ter no mínimo 5 caracteres (Extra 1).</li>
+                    <li><strong>Extra 2:</strong> Campo vencimento não pode ser menor que a data de hoje.</li>
+                    <li><strong>Extra 3:</strong> Adicionar totalizadores</li>
+                    <li><strong>Extra 4:</strong> Campo removido deve ser padrão `false`.</li>
+                </ul>
+            </section>
+        
+            <section>
+                <h2>Observações</h2>
+                <p>Não haverá a persistência das tarefas em banco de dados. Para isso, podem utilizar um `array` para armazenar a lista das tarefas cadastradas.</p>
+            </section>
+
+            <section>
+                <h2>Futuras implementações:</h2>
+                <ul>
+                    <li>Uma opção de Hard Delete, onde vai excluir a tarefa da arrayOfTasks e sumir com ela da aplicação</li>
+                    <li>Salvar os dados em um banco de dados externo invés de no Local Storage</li>
+                    <li>Deixar responsivo para aparelhos mobile</li>
+                </ul>
+            </section>
+</div>
+</body>
+</html>
