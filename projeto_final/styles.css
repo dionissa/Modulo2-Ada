@@ -181,6 +181,11 @@ input {
 
 .expired {
     background-color: #c94545;
+    color: white;
+}
+
+.expired h2, .expired p {
+    text-decoration: line-through;
 }
 
 .task-title {
@@ -222,3 +227,4 @@ input {
 .checked {
     background-color: rgb(29, 141, 29);
 }
+

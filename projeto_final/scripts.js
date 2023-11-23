@@ -456,23 +456,30 @@ function loadTasksFromLocalStorage() {
     }
 }
 
-// function clickToCheck(id) {
-//     let idForSelector = `#id${id}`;
-//     let taskDiv = document.querySelector(idForSelector);
+function searchTaskByIndex(index) {
+    if (!!arrayOfTasks[index]) {
+        console.log(`A tarefa que se encontra no ID ${index} tem o título de ${arrayOfTasks[index].title}, a descrição dela é: "${arrayOfTasks[index].description}", a categoria é "${arrayOfTasks[index].category}" e o prazo de validade é até o dia ${arrayOfTasks[index].expirationDate.split('-').reverse().join('-')}`)
+    } else {
+        console.log("Não existe tarefa com esse ID.")
+    }
+}
 
-//     if (!taskDiv.classList.contains("checked")) {
-//         taskDiv.classList.add("checked");
-//     } else {
-//         taskDiv.classList.remove("checked");
-//     }
-//     return;
-// }
+function searchTaskById(id) {
+    for (itens of arrayOfTasks){
+        if (itens.id === id) {
+            console.log(`A tarefa que se tem o ID ${id} tem o título de ${itens.title}, a descrição dela é: "${itens.description}", a categoria é "${itens.category}" e o prazo de validade é até o dia ${itens.expirationDate.split('-').reverse().join('-')}`)
+            return
+        } else {
+            console.log("Não existe tarefa com esse ID.")
+            return
+        }
+    }
+}
 
 
 // Chamada a função para carregar as tarefas já existentes no localStorage
 loadTasksFromLocalStorage();
 updateExpiredStatus();
-
 
 // Futuras implementações:
 // Uma opção de Hard Delete, onde vai excluir a tarefa da arrayOfTasks e sumir com ela da aplicação
