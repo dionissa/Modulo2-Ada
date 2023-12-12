@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dungeon Crawler</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Hanken+Grotesk:wght@500&family=Heebo&family=IBM+Plex+Mono&family=Lato:wght@400;700;900&family=Open+Sans:wght@500;800&family=PT+Sans:ital@0;1&family=Silkscreen&display=swap');
+
+        * 
+        {
+            font-family: "Silkscreen";
+        }
+        body {
+            font-family: "Silkscreen";
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        #start-btn {
+            padding: 10px 20px;
+            font-size: 1.5em;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        #start-btn:hover {
+            background-color: #45a049;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <h1>Dungeon Crawler</h1>
+        <button id="start-btn" onclick="GameState.startGame()">Iniciar Jogo</button>
+    </div>
+
+</body>
+</html>

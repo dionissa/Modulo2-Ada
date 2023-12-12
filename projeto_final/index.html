@@ -3,56 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>• Lista de Tarefas</title>
+    <title>Dungeon Crawler</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js" defer></script>
-    <link rel="shortcut icon" href="img/notepad.png" type="image/x-icon">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="logo"><img src="img/notepad.png" alt="logo"></div>
-        <div class="navbar">
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="about.html">Sobre o Projeto</a></li>
-                <li><a href="https://github.com/dionissa?tab=repositories" target="_blank">Outros Projetos</a></li>
-                <li><a href="https://www.linkedin.com/in/dionissa/" target="_blank">Contato</a></li>
-            </ul>
-        </div>
-    </header>
-    <div class="title">
-        <h1>• Lista de Tarefas</h1>
-    </div>
-    <div class="form-menu">
-        <label for="title">Título*</label>
-        <input type="text" id="input-title" name="title" id="title" placeholder="Insira o título">
-        <label for="description">Descrição*</label>
-        <input type="text" id="input-description" name="description" id="description" placeholder="Insira a descrição">     
-        <label for="category">Categoria</label>
-        <input type="text" name="category" id="input-category" placeholder="Insira uma categoria">
-        <label for="date">Validade*</label>
-        <input type="date" name="date" id="input-date">
-        <button type="button" class="button" onclick="addTask()">
-            <span class="button-text">Adicionar</span>
-          </button>
-    </div>
-        <div class="wrap">
-            <div class="search">
-                <label for="title">Procure por título:</label>
-               <input type="text" placeholder="Título" id="searchValue">
-               <button type="submit" class="button" onclick="searchTask()">Procurar
-              </button>
-            </div>
-         </div>
-    <div class="tasks-menu" id="task-box">
-    </div>
-    <button class="button restore" onclick="recallAllDeleted()">🗑️ Restaurar todas as tarefas</button>
-    <div class="buttonsCommands">
-    <button class="button" id="showAllButton" onclick="showAllTasks()">Mostrar tudo</button>
-    <button class="button" id="showExpiredButton" onclick="showExpiredTasks()">Mostrar expiradas</button>
-    <button class="button" id="showNonExpiredButton" onclick="showNonExpiredTasks()">Mostrar pendentes</button>
-    <button class="button" onclick="showTaskTotals()">Total de tarefas</button>
+    
+    <div class="main">
+        <div class="main-container">
+            <div class="screen">
+            <div id="game-container">
+                <div id="sword-container"></div>
 
-</div>
+                <img id="main-character" src="img/character.gif" alt="" class="main-character sword">
+            </div>
+            <h3>Game Boy Dio</h3>
+        </div>
+            <div class="buttons-container">
+                <div class="movement-buttons">
+                    <div class="up"><button class="moviment-buttons move-up" onclick="Character.moveCharacter('up')">W</button></div>
+                    <div class="left-right">
+                        <button class="moviment-buttons move-left"  onclick="Character.moveCharacter('left')">A</button>
+                        <button class="moviment-buttons hidden" disabled>&nbsp;&nbsp</button>
+                        <button class="moviment-buttons move right"  onclick="Character.moveCharacter('right')">D</button>
+                    </div>
+                    <div class="down"><button class="moviment-buttons move-down"  onclick="Character.moveCharacter('down')">S</button></div>
+                </div>
+                <div class="control-buttons">
+                    <button id="attack-button">Atacar (E)</button>
+                    <button onclick="Character.colectItem()">Vasculhar (F)</button>
+                    <button onclick="openDoor()">Abrir (B)</button>
+                    <button onclick="Character.showItens(mainPlayer)">Inventário (I)</button>
+                </div>
+            </div>
+            <div class="pause-reset">
+                <button onclick="GameState.pauseGame()">Pausar</button>
+                <button onclick="GameState.quitGame()">Fechar</button>
+            </div>
+        </div>
+    </div>  
 </body>
 </html>

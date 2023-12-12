@@ -1,230 +1,134 @@
-@import url('https://fonts.googleapis.com/css2?family=Borel&family=Dancing+Script&family=Roboto&family=Shantell+Sans:ital,wght@0,300;0,400;1,300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Borel&family=Dancing+Script:wght@400;500&family=Roboto&family=Shantell+Sans:ital,wght@0,300;0,400;1,300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Hanken+Grotesk:wght@500&family=Heebo&family=IBM+Plex+Mono&family=Lato:wght@400;700;900&family=Open+Sans:wght@500;800&family=PT+Sans:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Hanken+Grotesk:wght@500&family=Heebo&family=IBM+Plex+Mono&family=Lato:wght@400;700;900&family=Open+Sans:wght@500;800&family=PT+Sans:ital@0;1&family=Silkscreen&display=swap');
 * {
-    margin: 0;
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
+    font-family: "Silkscreen";
 }
 
-body {
-    background-color: #ebedeb;
-    font-family: "PT Sans",'Roboto', sans-serif;
-}
-
-header {
+.main {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    background-color: #2F3061;
-}
-
-.logo img {
-    height: 40px;
-    width: 40px;
-    margin: 0 25px;
-}
-
-header ul {
-    display: flex;
-    justify-content: space-between;
-}
-
-header ul li {
-    list-style: none;
-}
-
-header ul li a{
-   text-decoration: none;
-    margin: 10px;
-    color: white;
-    padding: 5px;
-    cursor: pointer;
-    transition: ease all 1s;
-}
-
-header ul li:hover a {
-    background-color: #59C9F1;
-    padding: 5px;
-    border-radius: 10px;
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: ease 1s;
-}
-
-.title {
-    display: flex;
     justify-content: center;
-    margin: 2rem 0;
-    font-family: "PT Sans";
+    background-color: #8ca1e0;
+    border: 10px solid #0d0d0d;
+    width: 35vw;
+    margin: 10px auto;
+    border-radius: 1rem;
 }
 
-.title h1 {
-    background-color: #2F3061;
-    padding: 15px;
-    color: white;
-    border-radius: 10px;
-    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-}
-
-.about-us-info  {
-    width: 50vw;
+.main-container {
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    background-color: #ccc;
-    padding: 25px;
-    border-radius: 15px;
-}
-
-
-.form-menu {
-    display: flex;
-    width: 90vw;
-    justify-content: center;
     align-items: center;
 }
 
-.form-menu > * {
-    margin: 0 10px;
-}
-
-.form-menu input {
-    height: 30px;
-    text-align: center;
-    border-radius: 8px;
-    border: none;
-}
-input {
-    height: 30px;
-    text-align: center;
-    border-radius: 8px;
-    border: none;
-}
-
-.search {
+.buttons-container {
     display: flex;
-    justify-content: center;
+    padding: 1rem;
+    margin: 0;
+    gap: 1rem;
+}
+
+.movement-buttons {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    
+
 }
 
-.search > * {
-    margin: 15px;
-}
+button {
 
-.task input {
-    height: 30px;
-    text-align: center;
-    border-radius: 8px;
+    padding: 0.2rem;
+    border-radius: 50%;
+    outline: none;
     border: none;
 }
 
-.button {
-  background-color: #fff;
-  border: 1px solid #d5d9d9;
-  border-radius: 8px;
-  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
-  box-sizing: border-box;
-  color: #0f1111;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Amazon Ember", "PT Sans",sans-serif;
-  font-size: 13px;
-  line-height: 29px;
-  padding: 0 10px 0 11px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  width: 100px;
+.movement-buttons .moviment-buttons {
+    padding: 0.5rem; 
+    cursor: pointer;
+    border-radius: 0.3rem;
+    margin: 0.1rem;
+    border: 1px solid #404341;
 }
 
-.button:hover {
-  background-color: #f7fafa;
-}
-
-.buttonsCommands {
-    position: fixed;
-    bottom: 5%;
-    left: 5%;
-}
-
-.buttonsCommands > * {
-    width: 150px;
-}
-
-.button:focus {
-  border-color: #008296;
-  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
-  outline: 0;
-}
-
-#task-box {
+.control-buttons {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3rem;
 }
 
-.task {
-    padding: 15px;
-    background-color: #FFE66D;
-    margin: 25px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
-    border-bottom-right-radius: 25px;
+
+
+.control-buttons button {
+    border-radius: 1rem;
+    border: 1px solid #404341;
 }
 
-.expired {
-    background-color: #c94545;
-    color: white;
+.pause-reset button {
+    border-radius: 0.3rem;
+    border: 1px solid #404341;
 }
 
-.expired h2, .expired p {
-    text-decoration: line-through;
+#game-container {
+    position: relative;
+    width: 512px;
+    height: 543px;
+    background-image: url('img/map2.png');
+    border: 10px solid #404341;
 }
 
-.task-title {
-    font-size: 18px;
-    font-weight: bold;
+.screen {
+    padding: 0.5rem 1rem;
+    background-color: #77817c;
+    border-radius: 0.2rem;
+    border: 1px solid #404341;
+    margin: 0;
 }
 
-.description {
-    margin-top: 10px;
+h3 {
+    text-align: center;
+    margin: 0.5rem;
 }
 
-.category, .expiration {
-    margin-top: 5px;
-    font-style: italic;
+.main-character {
+    z-index: 100;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    transform: scale(3);
 }
 
-.edits {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
+.enemy {
+    width: 64px;
+    height: 64px;
 }
 
-.restore { 
-    width: 230px;
-    position: fixed;
-    bottom: 5%;
-    right: 5%;
+.boss {
+    width: 128px;
+    height: 96px;
 }
 
-.edit {
-    width: 100%;
-    margin-top: 15px;
+.enemy {
+    transform: scaleY(2) scaleX(-1);
+}
+
+.boss {
+    transform: scaleX(1) ;
+}
+
+#sword-container {
+    display: none;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+    z-index: 50;
 }
 
 .hidden {
-    display: none;
+    opacity: 0;
 }
-
-.checked {
-    background-color: rgb(29, 141, 29);
-}
-
